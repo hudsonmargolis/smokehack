@@ -73,3 +73,23 @@ def getConSurv(sub):
                         if f[-30:-5] == 'qgenericconfoundersschema':
                             t = os.path.join(y, f)
                             return t
+
+'''
+input a list of last 10 characters of the string of the file names, returns dictionary with subject ids and adress of those files
+'''
+def getAudioFiles(files):
+    if type(files) != list:
+        raise TypeError("Error: must pass a list to getAudioFile")
+    for x in files:
+        if len(x) != 10:
+            raise ValueError("Len of file name is not 10, need to pass in the last 10 characters in the string of the file name")
+    a = audiofiles
+    d = dict()
+    for i in a:
+        f = []
+        for x in files:
+            for z in a[i]:
+                if z[-10:] == x:
+                    f.append(z)
+        d[i] = f
+    return d
